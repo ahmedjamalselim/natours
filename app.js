@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const rateLimiter = require('express-rate-limit');
 const helmet = require('helmet');
+const compression = require('compression');
 const dataSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
@@ -81,6 +82,8 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewsRouter);
 app.use('/api/v1/bookings', bookingRouter);
+
+app.use(compression());
 
 app.all('*', (req, res, next) => {
   next(
