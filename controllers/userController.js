@@ -36,7 +36,7 @@ exports.uploadUserPhoto = upload.single('photo');
 
 // B) Resizing the user photo
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
-  if (!req.file.buffer) return next();
+  if (!req.file) return next();
   // console.log(req.file);
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
   await sharp(req.file.buffer)
