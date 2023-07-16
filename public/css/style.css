@@ -62,9 +62,34 @@ body {
   grid-row: 1 / -1;
 }
 
-.container {
+/* .container {
   max-width: 120rem;
   margin: 0 auto;
+} */
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }
 
 .ma-bt-md {
@@ -773,6 +798,13 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .user-view {
+    flex-direction: column;
+  }
+}
+
 .user-view__menu {
   -webkit-box-flex: 32rem;
   -ms-flex: 32rem 0 0px;
@@ -1079,7 +1111,7 @@ body {
   max-width: 120rem;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 7rem;
 }
 
