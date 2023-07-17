@@ -11,7 +11,7 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const AppError = require('./utilities/appError');
 const globalErrorHandler = require('./controllers/errorController');
-
+const bookingController = require('./controllers/bookingController');
 const tourRouter = require('./routes/tourRouter');
 const userRouter = require('./routes/userRouter');
 const reviewsRouter = require('./routes/reviewsRouter');
@@ -40,6 +40,12 @@ app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 // body parser: reading data from the body to req.body
 app.use(express.json({ limit: '10kb' }));
