@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const dataSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const cors = require('cors');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const AppError = require('./utilities/appError');
@@ -23,6 +24,13 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // PUBLIC MIDDLEWARES
+
+// allow cross origin resource sharing
+app.use(cors());
+
+// non simple requests (patch, put, delete,...)
+app.options('*', cors());
+
 //using helmet to set some http security headers
 app.use(express.static(path.join(__dirname, 'public')));
 
