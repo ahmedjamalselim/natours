@@ -49,7 +49,14 @@ app.post(
 );
 
 // body parser: reading data from the body to req.body
-app.use(express.json({ limit: '10kb' }));
+app.use((req, res, next) => {
+  if (req.originalUrl === '/webhook-checkout') {
+    next();
+  } else {
+    express.json({ limit: '10kb' })(req, res, next);
+  }
+});
+// app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 
 // adding requested at
