@@ -9,7 +9,7 @@ const xss = require('xss-clean');
 const cors = require('cors');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const AppError = require('./utilities/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const bookingController = require('./controllers/bookingController');
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.post(
   '/webhook-checkout',
-  bodyParser.raw({ type: 'application/json' }),
+  express.raw({ type: '*/*' }),
   bookingController.webhookCheckout
 );
 
