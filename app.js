@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.post(
   '/webhook-checkout',
-  express.raw({ type: '*/*' }),
+  express.raw({ type: 'application/json' }),
   bookingController.webhookCheckout
 );
 
